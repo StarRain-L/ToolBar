@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "EWReplyPostsToolBar.h"
+#import "UIView+view.h"
 
 //获取设备的物理信息
 #define screenHeight    [UIScreen mainScreen].bounds.size.height
@@ -43,11 +44,24 @@
     _toolbar.sendBtnClick = ^(){
         
         NSLog(@"点击发送==%@",weakself.toolbar.replyPost.text);
-        weakself.toolbar.replyPost.text = @"";
+        [weakself  toolBarRecover];
     };
     [self.view addSubview:_toolbar];
 }
-
+//点击空白toolbar恢复
+-(void)toolBarRecover{
+    self.toolbar.sendBtn.hidden = NO;
+    self.toolbar.replyPost.hidden = NO;
+    self.toolbar.replyPost.text = @"";
+    _toolbar.replyPost.placeholderLable.hidden = NO;
+    self.toolbar.transform = CGAffineTransformIdentity;
+    if (self.toolbar.y != screenHeight-ToolbarH) {
+        _toolbar.heightTV = 35;
+        _toolbar.height = ToolbarH;
+        _toolbar.y = screenHeight-ToolbarH;
+    }
+    [self.view endEditing:YES];
+}
 #pragma mark - 通知
 //显示键盘
 - (void)keyboardDidShow:(NSNotification *)note{

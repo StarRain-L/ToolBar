@@ -50,8 +50,8 @@
 -(void)textChange{
   //判断是否输入了内容,如果有内容就隐藏label,没有就显示label
     self.placeholderLable.hidden = (self.text.length>0);
-    NSLog(@"--%d",self.text.length);
-    NSString *des = [NSString stringWithFormat:@"最多只能输入%d个字哦",kMaxLength];
+//    NSLog(@"--%d",self.text.length);
+//    NSString *des = [NSString stringWithFormat:@"最多只能输入%d个字哦",kMaxLength];
     NSString *toBeString = self.text;
     UITextInputMode *currentInputMode = self.textInputMode;
     NSString *lang = [currentInputMode primaryLanguage]; // 键盘输入模式
